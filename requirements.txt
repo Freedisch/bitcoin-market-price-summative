@@ -1,0 +1,10 @@
+pandas
+scikit-learn
+tensorflow
+keras
+Flask
+gunicorn
+matplotlib
+flask
+scikit-learn
+keras.models
