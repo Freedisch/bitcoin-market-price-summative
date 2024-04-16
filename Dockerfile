@@ -1,6 +1,7 @@
-FROM python:3.8-slim
-COPY . /app
-WORKDIR /app
-RUN pip install -r requirements.txt
-EXPOSE 5000
-CMD ["python", "app.py"]
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
+
+COPY ./requirements.txt /app/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+
+COPY . /app/app

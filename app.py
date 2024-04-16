@@ -1,24 +1,26 @@
-from flask import Flask, request, jsonify
-import numpy as np
-from src.model import load_keras_model
-from src.prediction import preprocess_input, predict
+from fastapi import FastAPI
+from pydantic import BaseModel
+from src.model import predict_pipeline
+from src.model import __version__ as model_version
 
-app = Flask(__name__)
 
-model = load_keras_model('models/model2.pkl')
+app = FastAPI()
 
-@app.route('/predict', methods=['POST'])
-def predict_route():
-    try:
-        data = request.get_json()
-        input_data = np.array(data['prices'])
-        processed_input = preprocess_input(input_data)
-        
-        prediction = predict(model, processed_input)
 
-        return jsonify({'prediction': prediction.tolist()})
-    except Exception as e:
-        return jsonify({'error': str(e)})
+class TextIn(BaseModel):
+    text: str
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+
+class PredictionOut(BaseModel):
+    prices: str
+
+
+@app.get("/")
+def home():
+    return {"health_check": "OK", "model_version": model_version}
+
+
+@app.post("/predict", response_model=PredictionOut)
+def predict(payload: TextIn):
+    prices = predict_pipeline(payload.text)
+    return {"prices": prices}
