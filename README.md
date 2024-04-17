@@ -67,10 +67,10 @@ Additional notes on how to deploy this on a live system using Flask and Docker:
 * [Pandas](https://pandas.pydata.org/) - Data manipulation and analysis
 
 ## Contributing
-Please read [CONTRIBUTING.md](https://github.com/yourusername/project_name/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/freedisch/bitcoin-market-price-summative/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
-* **Your Name** - *Initial work* - [YourUsername](https://github.com/yourusername)
+* **Thibaut Batale** - *Initial work* - [Freedisch](https://github.com/freedisch)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
